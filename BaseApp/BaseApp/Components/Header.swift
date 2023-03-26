@@ -11,7 +11,7 @@ class Header: UIStackView {
 
     let leadingBtn = IconBtn(iconName: "bookmark")
     
-    let title = UILabel(font: .systemFont(ofSize: 16),
+    let title = UILabel(font: .boldSystemFont(ofSize: 16),
                         color: .red,
                         alignment: .center,
                         numOfLines: 1,

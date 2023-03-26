@@ -27,6 +27,7 @@ class QuestionsVC: UIViewController {
         mainView.tableView.dataSource = self
         
         setupBindings()
+        setupCallbacks()
         
         viewModel.getData()
     }
@@ -44,6 +45,12 @@ class QuestionsVC: UIViewController {
             }
         }
     }
+    
+    func setupCallbacks(){
+        mainView.refreshCallback = { [weak self] in
+            self?.viewModel.getData()
+        }
+    }
 }
 
 extension QuestionsVC: UITableViewDataSource {
@@ -53,6 +60,7 @@ extension QuestionsVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: QuestionsTbCell.id, for: indexPath) as! QuestionsTbCell
+        cell.setupWithBanner(indexPath.row % 2 != 0 )
         cell.setupData(data: viewModel.questions.value[indexPath.row])
         return cell
     }

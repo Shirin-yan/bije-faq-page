@@ -23,9 +23,12 @@ class QuestionsView: UIView {
         return loading
     }()
 
+    var refreshCallback: (()->())?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView.register(QuestionsTbCell.self, forCellReuseIdentifier: QuestionsTbCell.id)
         
         setupView()
@@ -50,5 +53,10 @@ class QuestionsView: UIView {
         loading.easy.layout([
             Center(), Size(80)
         ])
+    }
+    
+    @objc func refresh(){
+        tableView.refreshControl?.endRefreshing()
+        refreshCallback?()
     }
 }

@@ -75,6 +75,16 @@ class QuestionsTbCell: UITableViewCell {
                         alignment: .left,
                         numOfLines: 0)
     
+    var bannerView: UIImageView = {
+        let img = UIImageView()
+        img.layer.cornerRadius = 10
+        img.backgroundColor = .red
+        img.easy.layout([
+            Width(DeviceDimensions.width-40), Height(DeviceDimensions.width/2-20)
+        ])
+        return img
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -89,12 +99,30 @@ class QuestionsTbCell: UITableViewCell {
     func setupView(){
         backgroundColor = .clear
         selectionStyle = .none
-        contentView.addSubview(contentStack)
-        contentStack.easy.layout([
-            Top(20), Leading(20), Trailing(20), Bottom()
-        ])
+        
     }
     
+    func setupWithBanner(_ withBanner: Bool){
+        if withBanner {
+            contentView.addSubview(contentStack)
+            contentStack.easy.layout([
+                Top(20), Leading(20), Trailing(20)
+            ])
+
+            contentView.addSubview(bannerView)
+            bannerView.easy.layout([
+                Top(10).to(contentStack, .bottom), Leading(20), Trailing(20), Bottom()
+            ])
+
+        } else {
+            bannerView.removeFromSuperview()
+            contentView.addSubview(contentStack)
+            contentStack.easy.layout([
+                Top(20), Leading(20), Trailing(20), Bottom()
+            ])
+        }
+    }
+        
     func setupContentStack(){
         contentStack.addBackground(color: .clear,
                                    cornerRadius: 5,
