@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (5.6.4)
+  - EasyPeasy (1.9.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.6.4)
+  - EasyPeasy (~> 1.9.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - EasyPeasy
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  EasyPeasy: 19a84ef8f8bbcf925b9fecc29d1d78b7dab96718
+
+PODFILE CHECKSUM: 541b42958b8e89ba936cc3e543f0a4ebee70c7b9
+
+COCOAPODS: 1.11.3
